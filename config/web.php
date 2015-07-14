@@ -8,26 +8,12 @@ $config = [
     'bootstrap' => ['log'],
 	'defaultRoute' => 'index',
 	'layout' => false,
-	'modules' => [
-			'check' => [
-					'class' => 'app\module\check\Module',
-					'defaultRoute' => 'index',
-			],
-			'register' => [
-					'class' => 'app\module\register\Module',
-					'defaultRoute' => 'index',
-			],
-			'login' => [
-					'class' => 'app\module\login\Module',
-					'defaultRoute' => 'index',
-			]
-	],
     'components' => [
     	'urlManager' => [
     			'enablePrettyUrl' => true,
     			// 'enableStrictParsing' => true,
     			'showScriptName' => false,
-    				'rules' => [
+    			'rules' => [
     					"<controller:\w+>/<action:\w+>"=>"<controller>/<action>",
     			]
     	],
@@ -57,7 +43,7 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    // 'levels' => ['error', 'warning'],
                 ],
             ],
         ],
@@ -65,14 +51,5 @@ $config = [
     ],
     'params' => $params,
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = 'yii\debug\Module';
-
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = 'yii\gii\Module';
-}
 
 return $config;

@@ -8,26 +8,6 @@
 		<script type="text/javascript" src="/static/jquery-easyui-1.4.3/jquery.min.js"></script>
 		<script type="text/javascript" src="/static/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
 		<script type="text/javascript">
-			$(function(){
-				$('#tt').tabs({
-					onLoad:function(panel){
-						var plugin = panel.panel('options').title;
-						panel.find('textarea[name="code-'+plugin+'"]').each(function(){
-							var data = $(this).val();
-							data = data.replace(/(\r\n|\r|\n)/g, '\n');
-							if (data.indexOf('\t') == 0){
-								data = data.replace(/^\t/, '');
-								data = data.replace(/\n\t/g, '\n');
-							}
-							data = data.replace(/\t/g, '    ');
-							var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
-							pre.text(data);
-							$(this).remove();
-						});
-						prettyPrint();
-					}
-				});
-			});
 			function open1(plugin,url){
 				if ($('#tt').tabs('exists',plugin)){
 					$('#tt').tabs('select', plugin);
@@ -36,13 +16,6 @@
 						title:plugin,
 						href:url,
 						closable:true,
-						extractor:function(data){
-							data = $.fn.panel.defaults.extractor(data);
-							var tmp = $('<div></div>').html(data);
-							data = tmp.find('#content').html();
-							tmp.remove();
-							return data;
-						}
 					});
 				}
 			}
@@ -81,7 +54,7 @@
 					<span>插件管理</span>
 						<ul>
 							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('算法插件','1')">算法插件</a></li>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','1')">业务插件</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','/plugin/operate')">业务插件</a></li>
 						</ul>
 				</li>
 			</ul>
