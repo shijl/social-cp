@@ -7,6 +7,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
 	'defaultRoute' => 'index',
+	'layout' => false,
 	'modules' => [
 			'check' => [
 					'class' => 'app\module\check\Module',
