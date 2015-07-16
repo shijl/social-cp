@@ -6,8 +6,9 @@
             <table>
                 <tr>
                     <td>项目名称:</td>
-                    <td><input name="name" class="f1 easyui-textbox"></input></td>
+                    <td><input name="project_name" class="f1 easyui-textbox"></input></td>
                 </tr>
+                
                 <tr>
                     <td></td>
                     <td><input type="submit" value="submit"></input></td>
