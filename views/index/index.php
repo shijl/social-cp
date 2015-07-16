@@ -75,8 +75,8 @@
 					<span>插件</span>
 					
 						<ul>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('算法插件','/plugin/index')">插件管理</a></li>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','/plugin/plugin-log')">插件日志</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('插件管理','/plugin/index')">插件管理</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('插件日志','/plugin/plugin-log')">插件日志</a></li>
 						</ul>
 				</li>
 				
