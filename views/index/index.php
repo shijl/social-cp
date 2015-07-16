@@ -51,10 +51,10 @@
 				</li>
 				
 				<li iconCls="icon-base">
-					<span>插件管理</span>
+					<span>插件</span>
 						<ul>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('算法插件','1')">算法插件</a></li>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','/plugin/operate')">业务插件</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('算法插件','/plugin/index')">插件管理</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','/plugin/plugin-log')">插件日志</a></li>
 						</ul>
 				</li>
 			</ul>
