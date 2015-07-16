@@ -34,7 +34,6 @@ $('#save-config').click(function(){
 	$.each(checkedItems, function(index, item){
 		names.push(item.id);
 	});
-	console.log(names.join(","));
 	var fields = names.join(",");
 	var project_id = $('#project_id').val();
 	var view_id = $('#view_id').val();
@@ -44,7 +43,7 @@ $('#save-config').click(function(){
 		} else {
 			$.messager.alert('提示','保存失败');
 		}
-		$('#field-config').datagrid('reload');
+		$('#field-config').propertygrid('reload');
 	});
 
 	
