@@ -14,7 +14,6 @@ $config = [
     			// 'enableStrictParsing' => true,
     			'showScriptName' => false,
     			'rules' => [
-		    			['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
     					"<controller:\w+>/<action:\w+>"=>"<controller>/<action>",
     			]
     	],
