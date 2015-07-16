@@ -45,22 +45,45 @@
 				<li iconCls="icon-base">
 					<span>项目模块参数配置</span>
 						<ul>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('登陆模块','1')">登陆模块</a></li>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('订单模块','1')">订单模块</a></li>
+						
+						<?php 
+							if(!empty($model)) {
+								foreach($model as $mk=>$mv) {
+									echo '<li iconCls="icon-gears">';
+									echo '<span>'.$mv['model_name'].'</span>';
+									if(!empty($mv['view'])) {
+										echo '<ul>';
+										foreach ($mv['view'] as $vk=>$vv) {
+											echo '<li><a class="e-link" href="javascript:void(0);" onclick="open1(\''.$vv['view_name'].'\',\'/model?view_id='.$vv['id'].'\')">'.$vv['view_name'].'</a></li>';
+										}
+										echo '</ul>';
+									}
+									echo '</li>';
+								}
+							}
+						?>
+							
+						</ul>
+				</li>
+				
+				<li iconCls="icon-base">
+					<span>项目管理</span>
+						<ul>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('算法插件','1')">算法插件</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','/plugin/operate')">业务插件</a></li>
 						</ul>
 				</li>
 				
 				<li iconCls="icon-base">
 					<span>插件管理</span>
 						<ul>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('算法插件','1')">算法插件</a></li>
-							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('业务插件','/plugin/operate')">业务插件</a></li>
+							<li iconCls="icon-gears"><a class="e-link" href="#" onclick="open1('添加项目','/project')">添加项目</a></li>
 						</ul>
 				</li>
 			</ul>
 		</div>
 		<div region="center">
-			<div id="tt" class="easyui-tabs" fit="true" border="false" plain="true">
+			<div id="tt" class="easyui-tabs" fit="true" border="false" plain="true" >
 				<div title="welcome" href=""></div>
 			</div>
 		</div>
