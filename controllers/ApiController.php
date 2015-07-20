@@ -3,7 +3,6 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-
 class ApiController extends Controller
 {
 	private $_project_obj = null;
@@ -11,6 +10,8 @@ class ApiController extends Controller
 	private $_view_obj = null;
 	private $_config_obj = null;
 	private $_field_obj = null;
+	private $_plugin_obj = null;
+	private $_plugin_log_obj = null;
 	
 	public function init()
 	{
@@ -19,6 +20,8 @@ class ApiController extends Controller
 		$this->_view_obj = new \app\model\Model_view();
 		$this->_config_obj = new \app\model\Project_config();
 		$this->_field_obj = new \app\model\Field();
+		$this->_plugin_obj = new \app\model\Plugin();
+		$this->_plugin_log_obj = new \app\model\PluginLog();
 	}
 	
 	
@@ -72,5 +75,45 @@ class ApiController extends Controller
 		}
 		
 		echo json_encode(array('code'=>'1000', 'data'=>$config));
+	}
+	public function actionGet_plugins()
+	{
+		$condition=[];
+		$condition['plugin_status'] = 1;
+		$query = $this->_plugin_obj->find()->where($condition);
+		$models = $query->all();
+		$output=[];
+		foreach($models as $model){
+			$item = [
+			'id' =>$model->id,
+			'plugin_name' =>$model->plugin_name,
+			'plugin_file_name' =>$model->plugin_file_name,
+			'plugin_type' =>$model->plugin_type,
+			'plugin_status' =>$model->plugin_status,
+			'description' =>$model->description,
+			'created_at' =>$model->created_at,
+			];
+			$output[]=$item;
+		}
+		if(empty($output)){
+			echo json_encode(array('code'=>'1006', 'data'=>'无插件数据'));
+		}else{
+			echo json_encode(array('code'=>'1000', 'data'=>$output));
+		}
+		
+	}
+	public function actionSend_plugin_info(){
+		$project_name = isset($_GET['project_name']) ? $_GET['project_name'] : '';
+		$plugin_name = isset($_GET['plugin_name']) ? $_GET['plugin_name'] : '';
+		$download_status = isset($_GET['download_status']) ? $_GET['download_status'] : '';
+		$this->_plugin_log_obj->project_name = $project_name;
+		$this->_plugin_log_obj->plugin_name = $plugin_name;
+		$this->_plugin_log_obj->download_status = $download_status;
+		$this->_plugin_log_obj->time = time();
+		if(!$this->_plugin_log_obj->save())
+		{
+			echo json_encode(array('code'=>'1007', 'data'=>'下载插件失败'));die;
+		}
+		echo json_encode(array('code'=>'1000', 'data'=>'下载插件成功'));die;
 	}
 }
